@@ -13,14 +13,15 @@
 
         // catch [attr-key]i18n-key
         var _regex = new RegExp('^\\[\\S*\\]', 'i'),
-            domKey = key.match(_regex);
+            domKey = key.match(_regex),
+            i18nKey = '';
 
-        key = (domKey) ? key.replace( _regex, '') : key;
+        i18nKey = (domKey) ? key.replace( _regex, '') : key;
 
-        var $dom = document.querySelector('[data-i18n$='+ key +']');
+        var $dom = document.querySelector('[data-i18n='+ key +']');
 
-        if(key in window.i18n){
-            var str = window.i18n[key];
+        if(i18nKey in window.i18n){
+            var str = window.i18n[i18nKey];
 
             if(domKey){
                 domKey = domKey[0].substr(1, domKey[0].length-2);
