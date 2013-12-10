@@ -1,4 +1,4 @@
-describe('i18n.jquery :: ', function() {
+describe('i18n :: ', function() {
     var stringify = JSON.stringify;
     window.i18n = { title: 'This is title string.'};
 
