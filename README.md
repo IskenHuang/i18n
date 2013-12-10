@@ -11,8 +11,8 @@ i18n.js is pure javascript support ie8+. Detail support browser information you 
 // after translate
 // <div data-i18n="hello">Hello~</div>
 
-<div data-i18n="[title]hello"></div>
-// <div data-i18n="[title]hello" title="Hello~"></div>
+<div data-i18n="__title__hello"></div>
+// <div data-i18n="__title__hello" title="Hello~"></div>
 ```
 
 # methods
