@@ -44,3 +44,6 @@ translate all element with [data-i18n] attribute
     console.log('lang = ', I18N.lng());
 </script>
 ```
+
+# test
+`npm test`
