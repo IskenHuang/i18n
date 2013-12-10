@@ -10,8 +10,8 @@
             return this;
         }
 
-        // catch [attr-key]i18n-key
-        var _regex = new RegExp('^\\[\\S*\\]', 'i'),
+        // catch __attrKey__i18nKey
+        var _regex = new RegExp('^\\_\\_\\S*\\_\\_', 'i'),
             domKey = key.match(_regex),
             i18nKey = '';
 
@@ -23,14 +23,19 @@
             var str = window.i18n[i18nKey];
 
             if(domKey){
-                domKey = domKey[0].substr(1, domKey[0].length-2);
+                domKey = domKey[0].substr(2, domKey[0].length-4);
                 $dom.attr(domKey, str);
             }else{
                 $dom.text(str);
             }
 
         }else{
-            $dom.text(key);
+            if(domKey){
+                domKey = domKey[0].substr(2, domKey[0].length-4);
+                $dom.attr(domKey, i18nKey);
+            }else{
+                $dom.text(key);
+            }
         }
 
         return this;
