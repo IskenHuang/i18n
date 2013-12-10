@@ -11,8 +11,8 @@
             return this;
         }
 
-        // catch [attr-key]i18n-key
-        var _regex = new RegExp('^\\[\\S*\\]', 'i'),
+        // catch __attrKey__i18nKey
+        var _regex = new RegExp('^\\_\\_\\S*\\_\\_', 'i'),
             domKey = key.match(_regex),
             i18nKey = '';
 
@@ -24,14 +24,19 @@
             var str = window.i18n[i18nKey];
 
             if(domKey){
-                domKey = domKey[0].substr(1, domKey[0].length-2);
+                domKey = domKey[0].substr(2, domKey[0].length-4);
                 $dom.setAttribute(domKey, str);
             }else{
                 $dom.innerHTML = str;
             }
 
         }else{
-            $dom.innerHTML = key;
+            if(domKey){
+                domKey = domKey[0].substr(2, domKey[0].length-4);
+                $dom.setAttribute(domKey, i18nKey);
+            }else{
+                $dom.innerHTML = key;
+            }
         }
 
         return this;
@@ -42,7 +47,7 @@
             $i18n = document.querySelectorAll('[data-i18n]');
 
         for(var i = 0; i < $i18n.length; i ++){
-            var $dom = document.querySelectorAll('[data-i18n]:nth-child(' + i + ')'),
+            var $dom = $i18n[i],
                 _key = $dom.getAttribute('data-i18n');
 
             _this.t(_key);

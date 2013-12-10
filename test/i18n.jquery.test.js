@@ -27,7 +27,7 @@ describe('i18n.jquery :: ', function() {
             done();
         });
 
-        it('should translate value to key', function() {
+        it('should be translate and fill i18n value to element', function() {
             I18N.translate('title');
             $('[data-i18n=title]').html().should.equal('This is title string.');
         });
@@ -37,9 +37,14 @@ describe('i18n.jquery :: ', function() {
             $('[data-i18n=footer]').html().should.equal('footer');
         });
 
-        it('should translateAll keys', function() {
+        it('should be translateAll keys and title will be "This is title string."', function() {
             I18N.translateAll();
             $('[data-i18n=title]').html().should.equal('This is title string.');
+        });
+
+        it('should be translateAll keys and title will be "footer"', function() {
+            I18N.translateAll();
+            $('[data-i18n=footer]').html().should.equal('footer');
         });
     });
 
@@ -96,6 +101,11 @@ describe('i18n.jquery :: ', function() {
         it('should translateAll keys with attribute', function() {
             I18N.translateAll();
             $('[data-i18n=__title__title]').attr('title').should.equal('This is title string.');
+        });
+
+        it('should translateAll keys with attribute', function() {
+            I18N.translateAll();
+            $('[data-i18n=__title__footer]').attr('title').should.equal('footer');
         });
     });
 });
