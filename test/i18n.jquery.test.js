@@ -73,17 +73,17 @@ describe('i18n :: ', function() {
             done();
         });
 
-        it('should translate value to key', function() {
+        it('should be empty element', function() {
             I18N.translate('__title__title');
             $('[data-i18n=__title__title]').html().should.equal('');
         });
 
-        it('should translate attribute to value', function() {
+        it('should be fill value in title attribute', function() {
             I18N.translate('__title__title');
             $('[data-i18n=__title__title]').attr('title').should.equal('This is title string.');
         });
 
-        it('should be fill key because cannot find key in window.i18n', function() {
+        it('should be empty element', function() {
             I18N.translate('__title__footer');
             $('[data-i18n=__title__footer]').html().should.equal('');
         });
@@ -93,17 +93,17 @@ describe('i18n :: ', function() {
             $('[data-i18n=__title__footer]').attr('title').should.equal('footer');
         });
 
-        it('should translateAll keys', function() {
+        it('should translateAll keys and element be empty', function() {
             I18N.translateAll();
             $('[data-i18n=__title__title]').html().should.equal('');
         });
 
-        it('should translateAll keys with attribute', function() {
+        it('should translateAll keys and fill value at attribute', function() {
             I18N.translateAll();
             $('[data-i18n=__title__title]').attr('title').should.equal('This is title string.');
         });
 
-        it('should translateAll keys with attribute', function() {
+        it('should translateAll keys and fill key at attribute', function() {
             I18N.translateAll();
             $('[data-i18n=__title__footer]').attr('title').should.equal('footer');
         });
