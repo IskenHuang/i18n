@@ -25,24 +25,19 @@
 
         i18nKey = (domKey) ? key.replace( _regex, '') : key;
 
-        var $dom = document.querySelector('[data-i18n='+ key +']');
+        var $domArray = document.querySelectorAll('[data-i18n='+ key +']'),
+            translateStr = window.i18n[i18nKey] || i18nKey;
 
-        if(i18nKey in window.i18n){
-            var str = window.i18n[i18nKey];
-
-            if(domKey){
-                domKey = domKey[0].substr(2, domKey[0].length-4);
+        if(domKey){
+            domKey = domKey[0].substr(2, domKey[0].length-4);
+            for(var i = 0; i < $domArray.length; i++) {
+                var $dom = $domArray[i];
                 $dom.setAttribute(domKey, str);
-            }else{
-                $dom.innerHTML = str;
             }
-
         }else{
-            if(domKey){
-                domKey = domKey[0].substr(2, domKey[0].length-4);
-                $dom.setAttribute(domKey, i18nKey);
-            }else{
-                $dom.innerHTML = key;
+            for(var i = 0; i < $domArray.length; i++) {
+                var $dom = $domArray[i];
+                $dom.innerHTML = str;
             }
         }
 
@@ -50,15 +45,14 @@
     };
 
     I18N.prototype.translateAll = function (el) {
-        var _this = this,
-            $el = typeof(el) === 'string' ? document.querySelector(el) || document : document,
+        var $el = typeof(el) === 'string' ? document.querySelector(el) || document : document,
             $i18n = $el.querySelectorAll('[data-i18n]');
 
         for(var i = 0; i < $i18n.length; i ++){
             var $dom = $i18n[i],
                 _key = $dom.getAttribute('data-i18n');
 
-            _this.t(_key);
+            this.t(_key);
         }
 
         return this;
