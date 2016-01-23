@@ -1,9 +1,16 @@
 (function(){
     var I18N = function(){};
 
-    I18N.prototype.lng = function lng() {
+    I18N.prototype.lng = I18N.prototype.lang = function () {
         var lang = document.querySelector('html').getAttribute('lang');
         return (lang) ? lang.toUpperCase() : 'EN-US';
+    };
+
+    I18N.prototype.setLang = function (lang) {
+        if(lang && typeof(lang) === 'string' && lang.match(/^[a-zA-Z]{2}\-[a-zA-Z]{2}$/)) {
+            document.querySelector('html').setAttribute('lang', lang.toUpperCase());
+            window.I18N.translateAll();
+        }
     };
 
     I18N.prototype.t = I18N.prototype.translate = function translate(key) {
@@ -42,7 +49,7 @@
         return this;
     };
 
-    I18N.prototype.translateAll = function translateAll() {
+    I18N.prototype.translateAll = function () {
         var _this = this,
             $i18n = document.querySelectorAll('[data-i18n]');
 
