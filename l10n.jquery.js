@@ -9,8 +9,6 @@
         }
     };
 
-    if(!window.l10n){
-        window.l10n = {};
-    }
+    window.l10n = window.l10n || {};
     window.L10N = new L10N();
 })(jQuery);

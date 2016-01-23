@@ -1,7 +1,7 @@
 (function(){
     var L10N = function(){};
 
-    L10N.prototype.setLang = function (lang) {
+    L10N.prototype.updateLang = function (lang) {
         if(lang && typeof(lang) === 'string' && lang.match(/^[a-zA-Z]{2}\-[a-zA-Z]{2}$/)) {
             document.querySelector('html').setAttribute('lang', lang.toUpperCase());
             window.i18n = window.l10n[lang] || {};
@@ -9,8 +9,6 @@
         }
     };
 
-    if(!window.l10n){
-        window.l10n = {};
-    }
+    window.l10n = window.l10n || {};
     window.L10N = new L10N();
 })();
