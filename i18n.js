@@ -51,7 +51,7 @@
 
     I18N.prototype.translateAll = function (el) {
         var _this = this,
-            $el = tyoeof(el) === 'string' ? document.querySelector(el) || document : document,
+            $el = typeof(el) === 'string' ? document.querySelector(el) || document : document,
             $i18n = $el.querySelectorAll('[data-i18n]');
 
         for(var i = 0; i < $i18n.length; i ++){
