@@ -1,6 +1,6 @@
 {
   "name": "i18n",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "frontend i18n solution",
   "main": "i18n.js",
   "scripts": {

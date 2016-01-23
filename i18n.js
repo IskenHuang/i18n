@@ -11,10 +11,13 @@
             document.querySelector('html').setAttribute('lang', lang.toUpperCase());
             window.I18N.translateAll();
         }
+
+        return this;
     };
 
     I18N.prototype.t = I18N.prototype.translate = function translate(key) {
         if(!key) {
+            throw 'Can not find key: ' + key;
             return this;
         }
 
@@ -32,12 +35,12 @@
             domKey = domKey[0].substr(2, domKey[0].length-4);
             for(var i = 0; i < $domArray.length; i++) {
                 var $dom = $domArray[i];
-                $dom.setAttribute(domKey, str);
+                $dom.setAttribute(domKey, translateStr);
             }
         }else{
             for(var i = 0; i < $domArray.length; i++) {
                 var $dom = $domArray[i];
-                $dom.innerHTML = str;
+                $dom.innerHTML = translateStr;
             }
         }
 
