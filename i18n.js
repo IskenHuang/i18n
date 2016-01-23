@@ -49,9 +49,10 @@
         return this;
     };
 
-    I18N.prototype.translateAll = function () {
+    I18N.prototype.translateAll = function (el) {
         var _this = this,
-            $i18n = document.querySelectorAll('[data-i18n]');
+            $el = tyoeof(el) === 'string' ? document.querySelector(el) || document : document,
+            $i18n = $el.querySelectorAll('[data-i18n]');
 
         for(var i = 0; i < $i18n.length; i ++){
             var $dom = $i18n[i],
@@ -63,8 +64,6 @@
         return this;
     };
 
-    if(!window.i18n){
-        window.i18n = {};
-    }
+    window.i18n = window.i18n || {};
     window.I18N = new I18N().translateAll();
 })();

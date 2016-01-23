@@ -48,9 +48,10 @@
         return this;
     };
 
-    I18N.prototype.translateAll = function () {
+    I18N.prototype.translateAll = function (el) {
         var _this = this,
-            $i18n = $('[data-i18n]');
+            $el = $(el),
+            $i18n = $el ? $el.find('[data-i18n]') : $('[data-i18n]');
 
         $i18n.each(function(index){
             var $dom = $($i18n[index]),
@@ -61,8 +62,6 @@
         return this;
     };
 
-    if(!window.i18n){
-        window.i18n = {};
-    }
+    window.i18n = window.i18n || {};
     window.I18N = new I18N().translateAll();
 })(jQuery);
