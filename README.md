@@ -4,7 +4,9 @@ i18n.js is pure javascript support ie8+. Detail support browser information you 
 # how to use
 ```
 <script>
-    window.hello = "Hello~";
+    window.i18n = {
+      hello: "Hello~"
+    };
 </script>
 
 <div data-i18n="hello"></div>
